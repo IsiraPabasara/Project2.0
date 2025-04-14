@@ -5,6 +5,7 @@ import view.Dashboard;
 import javax.swing.*;
 
 public class DashboardController {
+
     private Dashboard view;
 
     public DashboardController(String role) {
@@ -34,4 +35,6 @@ public class DashboardController {
         JOptionPane.showMessageDialog(view, "Opening Customer Panel...");
         // Logic to open Customer Panel
     }
+
+
 }
