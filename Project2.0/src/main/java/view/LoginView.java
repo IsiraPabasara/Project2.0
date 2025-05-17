@@ -32,6 +32,13 @@ public class LoginView extends JFrame {
                 String username = usernameTextField.getText();
                 String password = passwordField.getText();
                 controller.login(username, password);
+                JFrame frame = new JFrame("Dashboard");
+                Dashboard dashboard = new Dashboard();
+                frame.setContentPane(dashboard.getMainPanel()); // set the designed panel
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(500, 400); // adjust as needed
+                frame.setLocationRelativeTo(null); // center the window
+                frame.setVisible(true);
                 dispose();
             }
         });

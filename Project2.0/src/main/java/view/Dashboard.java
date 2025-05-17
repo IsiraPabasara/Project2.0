@@ -58,7 +58,7 @@ public class Dashboard extends JFrame {
         });
     }
 
-    /*public static void main(String[] args) {
+   /* public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Dashboard");
             Dashboard dashboard = new Dashboard();

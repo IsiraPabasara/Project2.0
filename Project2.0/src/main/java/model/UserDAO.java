@@ -7,7 +7,7 @@ import java.sql.*;
 public class UserDAO {
 
     public boolean register(User user) {
-        String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        String sql = "INSERT INTO staff (username, password) VALUES (?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -24,7 +24,7 @@ public class UserDAO {
     }
 
     public User login(String username, String password) {
-        String sql = "SELECT * FROM users WHERE username=? AND password=?";
+        String sql = "SELECT * FROM staff WHERE username=? AND password=?";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -37,8 +37,7 @@ public class UserDAO {
                 return new User(
                         rs.getInt("userid"),
                         rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("role")
+                        rs.getString("password")
                 );
             }
         } catch (SQLException e) {

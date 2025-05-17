@@ -3,7 +3,7 @@ package controller;
 import model.User;
 import model.UserDAO;
 import util.DBConnection;
-import view.HomeView;
+import view.Dashboard;
 import view.LoginView;
 import view.RegisterView;
 import javax.swing.JOptionPane;
@@ -47,7 +47,7 @@ public class AuthController {
     public void login(String username, String password) {
         User user = userDAO.login(username, password);
         if (user != null) {
-            new HomeView(user);
+
         } else {
             System.out.println("Login failed. Try again.");
             showLoginView();

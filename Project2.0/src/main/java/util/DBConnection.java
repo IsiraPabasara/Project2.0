@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.*;
 
 public class DBConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/delivery_app";
+    private static final String URL = "jdbc:mysql://localhost:3306/project2.0";
     private static final String USER = "root"; // your WAMP username
     private static final String PASSWORD = ""; // your WAMP password (often blank by default)
 
@@ -15,7 +15,7 @@ public class DBConnection {
     }
 
     public static boolean usernameExists(String username) {
-        String sql = "SELECT * FROM users WHERE username = ?";
+        String sql = "SELECT * FROM staff WHERE username = ?";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 

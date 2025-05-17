@@ -4,22 +4,21 @@ public class User {
     private int userid;
     private String username;
     private String password;
-    private String role;
+
 
     // Constructor with all fields
 
-    public User(int userid, String username, String password, String role) {
+    public User(int userid, String username, String password) {
         this.userid = userid;
         this.username = username;
         this.password = password;
-        this.role = role;
     }
 
     // Constructor for registration (no userid and role needed)
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = "staff"; // Default role set to staff
+         // Default role set to staff
     }
 
     // Getters and Setters
@@ -47,11 +46,4 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }
