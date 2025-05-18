@@ -3,10 +3,14 @@ package controller;
 import model.User;
 import model.UserDAO;
 import util.DBConnection;
-import view.Dashboard;
 import view.LoginView;
 import view.RegisterView;
-import javax.swing.JOptionPane;
+
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AuthController {
     private UserDAO userDAO;
@@ -17,8 +21,6 @@ public class AuthController {
         dbConnection = new DBConnection();
     }
 
-
-
     public void showRegisterView() {
         new RegisterView(this);
     }
@@ -27,11 +29,12 @@ public class AuthController {
         new LoginView(this);
     }
 
-    public void register(String username, String password) {
+    public boolean register(String username, String password) {
         if (DBConnection.usernameExists(username)) {
             JOptionPane.showMessageDialog(null,
                     "Username already exists. Please choose a different username.",
                     "Registration Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         } else {
             User user = new User(username, password);
             userDAO.register(user);
@@ -39,21 +42,24 @@ public class AuthController {
             JOptionPane.showMessageDialog(null,
                     "Registration successful! You can now log in.",
                     "Success", JOptionPane.INFORMATION_MESSAGE);
-
-            showLoginView();
+            return true;
         }
     }
 
-    public void login(String username, String password) {
-        User user = userDAO.login(username, password);
-        if (user != null) {
 
-        } else {
-            System.out.println("Login failed. Try again.");
-            showLoginView();
-            JOptionPane.showMessageDialog(null,
-                    "Username does not exist.",
-                    "Login Error", JOptionPane.ERROR_MESSAGE);
+    // ✅ Updated login method: checks DB, returns true if username+password match
+    public boolean login(String username, String password) {
+        try (Connection conn = dbConnection.getConnection()) {
+            String query = "SELECT * FROM staff WHERE username = ? AND password = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+
+            return rs.next(); // true if user exists
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

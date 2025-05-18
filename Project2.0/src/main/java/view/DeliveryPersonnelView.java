@@ -140,13 +140,9 @@ public class DeliveryPersonnelView extends JFrame {
 
         backButton.addActionListener(e -> {
             SwingUtilities.invokeLater(() -> {
-                JFrame frame = new JFrame("Dashboard");
-                Dashboard dashboard = new Dashboard();
-                frame.setContentPane(dashboard.getMainPanel());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setSize(500, 400);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
+                String adminId = "Fake User"; // Example admin ID passed from login
+                Dashboard dashboard = new Dashboard(adminId);
+                dashboard.setVisible(true);
             });
             SwingUtilities.getWindowAncestor(backButton).dispose();
         });
@@ -325,7 +321,7 @@ public class DeliveryPersonnelView extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Dashboard");
             Dashboard dashboard = new Dashboard();
@@ -335,5 +331,5 @@ public class DeliveryPersonnelView extends JFrame {
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         });
-    }
+    }*/
 }
