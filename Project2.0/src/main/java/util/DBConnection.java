@@ -10,6 +10,8 @@ public class DBConnection {
     private static final String USER = "root"; // your WAMP username
     private static final String PASSWORD = ""; // your WAMP password (often blank by default)
 
+
+
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
