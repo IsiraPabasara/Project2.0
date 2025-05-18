@@ -121,7 +121,8 @@ public class Dashboard extends JFrame {
         viewreport.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(Dashboard.this, "View Report functionality coming soon!", "Info", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(Dashboard.this, "View Report functionality coming soon!", "Info", JOptionPane.INFORMATION_MESSAGE);
+                new ReportView();
             }
         });
 
@@ -143,12 +144,12 @@ public class Dashboard extends JFrame {
         button.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             String adminId = "Admin123"; // Example admin ID passed from login
             Dashboard dashboard = new Dashboard(adminId);
             dashboard.setVisible(true);
         });
-    }*/
+    }
 
 }
