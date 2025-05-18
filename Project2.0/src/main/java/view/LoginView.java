@@ -23,7 +23,7 @@ public class LoginView extends JFrame {
         this.controller = controller;
 
         // Frame settings
-        setTitle("🚚 Fasttrack Logistics | Staff Dashboard");
+        setTitle("🚚 Fasttrack Logistics | Login");
         setSize(500, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
