@@ -136,6 +136,33 @@ public class ReportView extends JFrame {
         });
         footerPanel.add(backButton, BorderLayout.WEST);
 
+        backButton.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    // Set the Look and Feel to Metal
+                    for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                        if ("Metal".equals(info.getName())) {
+                            UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }
+                    SwingUtilities.updateComponentTreeUI(SwingUtilities.getRoot(backButton)); // Update the current UI
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+                // Create and show the Dashboard
+                Dashboard dashboard = new Dashboard("FAKE");
+                dashboard.setVisible(true);
+            });
+
+            // Dispose of the current window
+            SwingUtilities.getWindowAncestor(backButton).dispose();
+        });
+
+
+
+
         // Total entries label
         footerLabel = new JLabel("Total Entries: 0");
         footerLabel.setFont(new Font("Segoe UI", Font.ITALIC, 12));

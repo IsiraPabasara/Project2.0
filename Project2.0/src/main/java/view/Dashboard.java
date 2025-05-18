@@ -40,7 +40,7 @@ public class Dashboard extends JFrame {
         mainPanel.setPreferredSize(new Dimension(12,23));
 
         // Create and style the welcome label
-        welcomeLabel = new JLabel("Welcome to Admin Dashboard - " + adminId, JLabel.CENTER);
+        welcomeLabel = new JLabel("Welcome to Admin Dashboard",  JLabel.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 25));
         welcomeLabel.setForeground(Color.BLACK);
         welcomeLabel.setBorder(new EmptyBorder(20, 0, 10, 0));
@@ -123,6 +123,7 @@ public class Dashboard extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //JOptionPane.showMessageDialog(Dashboard.this, "View Report functionality coming soon!", "Info", JOptionPane.INFORMATION_MESSAGE);
                 new ReportView();
+                dispose();
             }
         });
 
@@ -144,12 +145,15 @@ public class Dashboard extends JFrame {
         button.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             String adminId = "Admin123"; // Example admin ID passed from login
             Dashboard dashboard = new Dashboard(adminId);
             dashboard.setVisible(true);
         });
-    }
+    }*/
+
+
+
 
 }
