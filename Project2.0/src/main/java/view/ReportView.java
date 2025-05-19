@@ -34,10 +34,13 @@ public class ReportView extends JFrame {
             System.err.println("Nimbus look and feel not available, using default.");
         }
 
-        setTitle("Monthly Parcel Report");
+        setTitle("🚚 Fasttrack Logistics | Monthly Parcel Report");
         setSize(1000, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        ImageIcon appIcon = new ImageIcon("D:/GitHub/Images/1.jpg");
+        setIconImage(appIcon.getImage());
 
         // Header panel with title and month selector
         JPanel headerPanel = new JPanel(new BorderLayout());
