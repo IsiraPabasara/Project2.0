@@ -1,13 +1,19 @@
 package view;
 
 import controller.DeliveryPersonnelController;
+import controller.TrackingController;
+import dao.TrackingDAO;
 import model.DeliveryPersonnelDAO;
+import service.TrackingService;
+import util.AutoTrackingSync;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class Dashboard extends JFrame {
     private JButton sendparcel;
@@ -130,8 +136,26 @@ public class Dashboard extends JFrame {
         trackshipment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(Dashboard.this, "Track Shipment functionality coming soon!", "Info", JOptionPane.INFORMATION_MESSAGE);
-            }
+                try {
+                    Connection conn = DriverManager.getConnection(
+                            "jdbc:mysql://localhost:3306/project2.0", "root", ""); // Change password if needed
+
+                    TrackingDAO trackingDAO = new TrackingDAO(conn);
+
+                    // Start auto-tracking thread
+                    new AutoTrackingSync(conn, trackingDAO).start();
+
+                    // You can now launch your main app interface or controller here
+
+                    TrackingService trackingService = new TrackingService(trackingDAO);
+                    TrackingView trackingView = new TrackingView();
+
+                    TrackingController controller = new TrackingController(trackingView, trackingService);
+                    controller.showView();
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }            }
         });
 
         setContentPane(mainPanel);
