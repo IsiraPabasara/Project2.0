@@ -68,6 +68,9 @@ public class Shipment_view {
 
     private void configureTables() {
 
+
+
+
         // Set consistent row height
         int rowHeight = 20;
         Ctable.setRowHeight(rowHeight);

@@ -16,18 +16,19 @@ public class AssignDeliveryView extends JFrame {
     public String enteredpersonnelid;
 
     public AssignDeliveryView(List<String> availablePersonnelIds, ActionListener nextListener, ActionListener backListener,String enteredcode) {
-        //Icon
-        //ImageIcon icon = new ImageIcon(getClass().getResource("/images/Fast.jpg"));
-        //setIconImage(icon.getImage());
+
 
         this.enteredcode=enteredcode;
 
 
-        setTitle("FastTrack Logistics | Assign Delivery Personnel");
+        setTitle("🚚 Fasttrack Logistics |Assign Delivery Personnel");
         setSize(500, 420);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // center the window
         setLayout(new BorderLayout());
+
+        ImageIcon appIcon = new ImageIcon("D:/GitHub/Images/1.jpg");
+        setIconImage(appIcon.getImage());
 
         // Create a main panel with BoxLayout for vertical alignment
         JPanel mainPanel = new JPanel();

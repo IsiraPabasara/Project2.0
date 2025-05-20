@@ -18,10 +18,10 @@ public class ReportController {
         String query = "SELECT p.parcel_id, p.parcel_type, c.email AS senderemail, c.name AS sendername, " +
                 "r.email AS receiveremail, r.name AS receivername, dp.name AS delivery_personnel, ds.schedule_date " +
                 "FROM parcel p " +
-                "JOIN customer c ON p.sender_id = c.id " +
-                "JOIN receiver r ON p.receiver_id = r.id " +
+                "JOIN customer c ON p.sender_id = c.customer_id " +
+                "JOIN receiver r ON p.receiver_id = r.receiver_id " +
                 "JOIN delivery_schedule ds ON p.parcel_id = ds.parcel_id " +
-                "JOIN delivery_personnel dp ON ds.delivery_personnel_id = dp.id";
+                "JOIN delivery_personnel dp ON ds.delivery_personnel_id = dp.delivery_personnel_id";
 
         try (Connection conn = DBConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -48,10 +48,10 @@ public class ReportController {
         String query = "SELECT p.parcel_id, p.parcel_type, c.email AS senderemail, c.name AS sendername, " +
                 "r.email AS receiveremail, r.name AS receivername, dp.name AS delivery_personnel, ds.schedule_date " +
                 "FROM parcel p " +
-                "JOIN customer c ON p.sender_id = c.id " +
-                "JOIN receiver r ON p.receiver_id = r.id " +
+                "JOIN customer c ON p.sender_id = c.customer_id " +
+                "JOIN receiver r ON p.receiver_id = r.receiver_id " +
                 "JOIN delivery_schedule ds ON p.parcel_id = ds.parcel_id " +
-                "JOIN delivery_personnel dp ON ds.delivery_personnel_id = dp.id " +
+                "JOIN delivery_personnel dp ON ds.delivery_personnel_id = dp.delivery_personnel_id " +
                 "WHERE MONTHNAME(ds.schedule_date) = ?";
 
         try (Connection conn = DBConnection.getConnection();

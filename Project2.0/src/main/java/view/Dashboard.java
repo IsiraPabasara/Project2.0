@@ -121,13 +121,31 @@ public class Dashboard extends JFrame {
 // Create and show the main application window
                 SwingUtilities.invokeLater(() -> {
                     Shipment_view shipmentView = new Shipment_view();
-                    JFrame frame = new JFrame("Shipment Management System");
+                    JFrame frame = new JFrame("🚚 Fasttrack Logistics | Sender | Receiver | Parcel Details");
                     frame.setContentPane(shipmentView.getPanel());
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.pack();
                     frame.setSize(1400, 600);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
+                    try {
+                        // Load the image from resources folder
+                        ImageIcon appIcon = new ImageIcon("D:/GitHub/Images/1.jpg");
+
+                        if (appIcon.getImage() != null) {
+                            // Scale image if needed
+                            Image scaledImage = appIcon.getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH);
+                            frame.setIconImage(scaledImage);
+                        }
+
+                        // Scale the image if needed (example: 128x128)
+                        Image image = appIcon.getImage();
+                        Image scaledImage = image.getScaledInstance(128, 128, Image.SCALE_SMOOTH);
+                        frame.setIconImage(scaledImage);
+                    } catch (Exception e2) {
+                        System.err.println("Could not load logo: " + e2.getMessage());
+                        // Fallback to default Java icon if logo not found
+                    }
                 });
                 SwingUtilities.getWindowAncestor(mainPanel).dispose();
 

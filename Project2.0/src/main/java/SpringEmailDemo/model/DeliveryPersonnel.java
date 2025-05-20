@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 public class DeliveryPersonnel {
 
     @Id
-    @Column(length = 191)
     private String id;  // String ID like "D001"
 
     @Column(nullable = false, length = 100)

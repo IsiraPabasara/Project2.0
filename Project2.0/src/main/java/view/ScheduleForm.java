@@ -1,7 +1,9 @@
 package view;
 
+import SpringEmailDemo.SpringEmailDemoApplication;
 import com.toedter.calendar.JDateChooser;
 import controller.ScheduleController;
+import org.springframework.boot.SpringApplication;
 
 import javax.swing.*;
 import java.awt.*;
@@ -136,6 +138,11 @@ public class ScheduleForm extends JFrame {
 
             controller.saveSchedule(scheduleId, selectedDate, packageId, personnelId);
             JOptionPane.showMessageDialog(this, "Schedule saved!");
+
+            String[] defaultArgs = new String[] {};
+            new Thread(() -> {
+                SpringApplication.run(SpringEmailDemoApplication.class, defaultArgs);
+            }).start();
         });
         buttonPanel.add(scheduleButton);
 
@@ -143,8 +150,9 @@ public class ScheduleForm extends JFrame {
 
 
         //window
-        //setTitle("FastTrack Logistics | Schedule Delivery");
-        //setIconImage(new ImageIcon(getClass().getResource("/logo.jpg")).getImage());
+        setTitle("FastTrack Logistics | Schedule Delivery");
+        ImageIcon appIcon = new ImageIcon("D:/GitHub/Images/1.jpg");
+        setIconImage(appIcon.getImage());
         setContentPane(mainPanel);
         setSize(500, 420);
         setLocationRelativeTo(null);

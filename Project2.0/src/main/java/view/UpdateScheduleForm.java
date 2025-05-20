@@ -92,8 +92,9 @@ public class UpdateScheduleForm extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         mainPanel.add(updateBtn, gbc);
 
-        //setTitle("FastTrack Logistics | Update Schedule");
-        //setIconImage(new ImageIcon(getClass().getResource("/logo.jpg")).getImage());
+        setTitle("FastTrack Logistics | Update Schedule");
+        ImageIcon appIcon = new ImageIcon("D:/GitHub/Images/1.jpg");
+        setIconImage(appIcon.getImage());
         setContentPane(mainPanel);
         setSize(500, 300);
         setLocationRelativeTo(null);
