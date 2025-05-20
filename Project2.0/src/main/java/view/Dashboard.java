@@ -106,7 +106,31 @@ public class Dashboard extends JFrame {
         sendparcel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(Dashboard.this, "Send Parcel functionality coming soon!", "Info", JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    // Set the Look and Feel to Metal
+                    for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                        if ("Metal".equals(info.getName())) {
+                            UIManager.setLookAndFeel(info.getClassName());
+                            break;
+                        }
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+// Create and show the main application window
+                SwingUtilities.invokeLater(() -> {
+                    Shipment_view shipmentView = new Shipment_view();
+                    JFrame frame = new JFrame("Shipment Management System");
+                    frame.setContentPane(shipmentView.getPanel());
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.pack();
+                    frame.setSize(1400, 600);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                });
+                SwingUtilities.getWindowAncestor(mainPanel).dispose();
+
             }
         });
 
@@ -137,6 +161,7 @@ public class Dashboard extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+
                     Connection conn = DriverManager.getConnection(
                             "jdbc:mysql://localhost:3306/project2.0", "root", ""); // Change password if needed
 
