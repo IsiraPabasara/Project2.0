@@ -14,8 +14,10 @@ import java.util.List;
 public class AssignDeliveryController {
     private AssignDeliveryView view;
     private AssignDeliveryPersonnelDAO dao;
+    public String enteredcode;
 
-    public AssignDeliveryController() {
+    public AssignDeliveryController(String enteredcode) {
+        this.enteredcode=enteredcode;
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/project2.0", "root", "");
             dao = new AssignDeliveryPersonnelDAO(conn);
@@ -26,7 +28,8 @@ public class AssignDeliveryController {
             view = new AssignDeliveryView(
                     ids,
                     new NextButtonListener(),
-                    new BackButtonListener()
+                    new BackButtonListener(),
+                    enteredcode
             );
             view.setVisible(true);
         } catch (Exception e) {

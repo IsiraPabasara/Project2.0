@@ -1,5 +1,7 @@
 package view;
 
+import model.AssignDeliveryPersonnel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,12 +12,15 @@ public class AssignDeliveryView extends JFrame {
     private JComboBox<String> personnelDropdown;
     private JButton nextButton;
     private JButton backButton;
+    public String enteredcode;
+    public String enteredpersonnelid;
 
-    public AssignDeliveryView(List<String> availablePersonnelIds, ActionListener nextListener, ActionListener backListener) {
+    public AssignDeliveryView(List<String> availablePersonnelIds, ActionListener nextListener, ActionListener backListener,String enteredcode) {
         //Icon
         //ImageIcon icon = new ImageIcon(getClass().getResource("/images/Fast.jpg"));
         //setIconImage(icon.getImage());
 
+        this.enteredcode=enteredcode;
 
 
         setTitle("FastTrack Logistics | Assign Delivery Personnel");
@@ -97,6 +102,28 @@ public class AssignDeliveryView extends JFrame {
                 SwingUtilities.getWindowAncestor(mainPanel).dispose();
             }
         });
+
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+
+                    enteredpersonnelid  = getSelectedPersonnelId();
+                    String personnelId = enteredpersonnelid;
+
+                    //int parcelId = 123; // You can change this or pass it from previous form
+                    ScheduleForm scheduleForm = new ScheduleForm(enteredcode, personnelId);
+                    scheduleForm.setVisible(true);
+                    dispose();
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid Delivery Personnel ID");
+                }
+
+            }
+        });
+
     }
 
     private void styleButton(JButton button) {
@@ -110,4 +137,5 @@ public class AssignDeliveryView extends JFrame {
     public String getSelectedPersonnelId() {
         return (String) personnelDropdown.getSelectedItem();
     }
+
 }

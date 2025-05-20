@@ -21,7 +21,7 @@ public class AssignDeliveryPersonnelDAO {
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            AssignDeliveryPersonnel dp = new AssignDeliveryPersonnel();
+            AssignDeliveryPersonnel dp = new AssignDeliveryPersonnel("id");
             dp.setId(rs.getInt("id"));
             dp.setDeliveryPersonnelId(rs.getString("delivery_personnel_id"));
             dp.setName(rs.getString("name"));
