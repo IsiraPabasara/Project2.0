@@ -4,6 +4,7 @@ import controller.AssignDeliveryController;
 import controller.CustomerController;
 import controller.ParcelController;
 import controller.ReceiverController;
+import model.AssignDeliveryPersonnel;
 import model.Customer;
 import model.Parcel;
 import model.Receiver;
@@ -62,6 +63,8 @@ public class Shipment_view {
     private CustomerController customerController;
     private ReceiverController receiverController;
     private ParcelController parcelController;
+
+    public String enteredcode;
 
     private void configureTables() {
 
@@ -205,6 +208,7 @@ public class Shipment_view {
         p_add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 addParcel();
             }
         });
@@ -270,7 +274,7 @@ public class Shipment_view {
         Nextbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AssignDeliveryController();
+                new AssignDeliveryController(enteredcode);
                 SwingUtilities.getWindowAncestor(Backbtn).dispose();
             }
         });
@@ -375,6 +379,8 @@ public class Shipment_view {
         String address = C_Address.getText();
         customerIDID = customerId;
 
+
+
         if (customerController.addCustomer(customerId, name, email, phoneNumber, address)) {
             JOptionPane.showMessageDialog(panel1, "Customer added successfully!");
             loadCustomerData();
@@ -457,12 +463,16 @@ public class Shipment_view {
 
     private void addParcel() {
         try {
+
             String parcelId = P_Id.getText();
             String senderId = customerIDID;
             String receiverId = senderIDID;
             String content = P_Content.getText();
             String type = (String) P_Type.getSelectedItem();
             String status = (String) P_Status.getSelectedItem();
+            enteredcode=P_Id.getText();
+
+            AssignDeliveryPersonnel personnelPage = new AssignDeliveryPersonnel(enteredcode);
 
             if (parcelController.addParcel(parcelId, senderId, receiverId, content, type, status)) {
                 JOptionPane.showMessageDialog(panel1, "Parcel added successfully!");

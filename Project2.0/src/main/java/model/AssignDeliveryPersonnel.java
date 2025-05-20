@@ -1,5 +1,7 @@
 package model;
 
+import view.AssignDeliveryView;
+
 // model.DeliveryPersonnel.java
 public class AssignDeliveryPersonnel {
     private int id;
@@ -8,6 +10,7 @@ public class AssignDeliveryPersonnel {
     private String name;
     private String phoneNumber;
     private String availabilityStatus;
+    public String enterecode;
 
     // Getter and Setter for id
     public int getId() {
@@ -62,4 +65,9 @@ public class AssignDeliveryPersonnel {
     public void setAvailabilityStatus(String availabilityStatus) {
         this.availabilityStatus = availabilityStatus;
     }
+
+    public AssignDeliveryPersonnel(String enterecode) {
+        this.enterecode=enterecode;
+    }
+
 }
