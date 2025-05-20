@@ -18,10 +18,13 @@ public class TrackingView extends JFrame {
     private DefaultTableModel tableModel;
 
     public TrackingView() {
-        setTitle("Tracking System");
+        setTitle("🚚 Fasttrack Logistics | Order Tracking");
         setSize(950, 550);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        ImageIcon appIcon = new ImageIcon("D:/GitHub/Images/1.jpg");
+        setIconImage(appIcon.getImage());
 
         Color backgroundColor = new Color(245, 248, 250);
         Color panelColor = new Color(230, 238, 245);
