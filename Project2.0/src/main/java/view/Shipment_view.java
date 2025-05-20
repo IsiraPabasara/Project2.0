@@ -1,9 +1,9 @@
 package view;
 
+import controller.AssignDeliveryController;
 import controller.CustomerController;
 import controller.ParcelController;
 import controller.ReceiverController;
-import main.Main;
 import model.Customer;
 import model.Parcel;
 import model.Receiver;
@@ -264,6 +264,13 @@ public class Shipment_view {
                 });
 
                 // Dispose of the current window
+                SwingUtilities.getWindowAncestor(Backbtn).dispose();
+            }
+        });
+        Nextbtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AssignDeliveryController();
                 SwingUtilities.getWindowAncestor(Backbtn).dispose();
             }
         });
@@ -573,7 +580,7 @@ public class Shipment_view {
         return panel1;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         JFrame frame = new JFrame("Fast Track |Customer Details ,Receiver Details & Parcel Details");
 
         try {
@@ -600,5 +607,5 @@ public class Shipment_view {
         frame.pack();
         frame.setSize(1400, 600);
         frame.setVisible(true);
-    }
+    }*/
 }
