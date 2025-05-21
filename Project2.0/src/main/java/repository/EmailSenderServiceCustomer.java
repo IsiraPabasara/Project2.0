@@ -18,7 +18,7 @@ public class EmailSenderServiceCustomer {
                 Dear %s,
 
                 Your shipment #%s is currently "In Transit".
-                Estimated Delivery Date: %s.
+                Package Status: %s.
                 No delays at the moment.
 
                 Thank you,

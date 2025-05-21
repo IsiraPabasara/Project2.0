@@ -4,6 +4,7 @@ import SpringEmailDemo.SpringEmailDemoApplication;
 import com.toedter.calendar.JDateChooser;
 import controller.ScheduleController;
 import org.springframework.boot.SpringApplication;
+import repository.SpringEmailDemoApplicationCustomer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -142,6 +143,7 @@ public class ScheduleForm extends JFrame {
             String[] defaultArgs = new String[] {};
             new Thread(() -> {
                 SpringApplication.run(SpringEmailDemoApplication.class, defaultArgs);
+                SpringApplication.run(SpringEmailDemoApplicationCustomer.class, defaultArgs);
             }).start();
         });
         buttonPanel.add(scheduleButton);
