@@ -1,6 +1,6 @@
 package view;
 
-import SpringEmailDemo.SpringEmailDemoApplication;
+import SpringEmailDemo.DeliveryPersonnelNotification;
 import com.toedter.calendar.JDateChooser;
 import controller.ScheduleController;
 import org.springframework.boot.SpringApplication;
@@ -142,7 +142,7 @@ public class ScheduleForm extends JFrame {
 
             String[] defaultArgs = new String[] {};
             new Thread(() -> {
-                SpringApplication.run(SpringEmailDemoApplication.class, defaultArgs);
+                SpringApplication.run(DeliveryPersonnelNotification.class, defaultArgs);
                 SpringApplication.run(SpringEmailDemoApplicationCustomer.class, defaultArgs);
             }).start();
         });

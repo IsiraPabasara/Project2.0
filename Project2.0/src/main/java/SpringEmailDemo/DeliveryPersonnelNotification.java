@@ -13,7 +13,7 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 
 @SpringBootApplication
-public class SpringEmailDemoApplication implements CommandLineRunner {
+public class DeliveryPersonnelNotification implements CommandLineRunner {
 
 	@Autowired
 	private DeliveryPersonnelRepository deliveryPersonnelRepository;
@@ -25,7 +25,7 @@ public class SpringEmailDemoApplication implements CommandLineRunner {
 	private EmailSenderService emailSenderService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringEmailDemoApplication.class, args);
+		SpringApplication.run(DeliveryPersonnelNotification.class, args);
 	}
 
 	@Override
