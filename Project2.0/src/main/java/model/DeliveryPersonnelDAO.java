@@ -91,8 +91,8 @@ public class DeliveryPersonnelDAO {
 
         try (
                 Connection conn = DBConnectionManageDeliveryPersonnel.getConnection();
-                PreparedStatement stmt = conn.prepareStatement("SELECT delivery_personnel_id FROM delivery_personnel");
-                ResultSet rs = stmt.executeQuery()
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT delivery_personnel_id FROM delivery_personnel");
         ) {
             while (rs.next()) {
                 String id = rs.getString("delivery_personnel_id");

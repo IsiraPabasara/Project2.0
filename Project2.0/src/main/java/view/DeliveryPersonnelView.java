@@ -246,8 +246,9 @@ public class DeliveryPersonnelView extends JFrame {
         if (result == JOptionPane.OK_OPTION) {
             String id = idField.getText();
             String email = emailField.getText().trim();
-            if(email.isEmpty()){
-                JOptionPane.showMessageDialog(this, "Cannot add the user. Please enter a Email","Input Error",JOptionPane.ERROR_MESSAGE);
+            String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+            if(email.isEmpty() || !email.matches(emailRegex)){
+                JOptionPane.showMessageDialog(this, "Cannot add the user. Email Field has an error","Input Error",JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -264,11 +265,17 @@ public class DeliveryPersonnelView extends JFrame {
             }
 
             DeliveryPersonnel p = new DeliveryPersonnel();
-            p.setDelivery_personnel_id(id);
-            p.setEmail(email);
-            p.setName(nameField.getText().trim());
-            p.setPhone_number(phoneField.getText().trim());
-            p.setAvailability_status(statusField.getText().trim());
+            if(idField.getText().isEmpty() || emailField.getText().isEmpty() || nameField.getText().isEmpty() || phoneField.getText().isEmpty() || statusField.getText().isEmpty() ){
+                JOptionPane.showMessageDialog(this, "Input Fields are empty", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }else{
+                p.setDelivery_personnel_id(id);
+                p.setEmail(email);
+                p.setName(nameField.getText().trim());
+                p.setPhone_number(phoneField.getText().trim());
+                p.setAvailability_status(statusField.getText().trim());
+            }
+
 
             if (existingPersonnel == null) {
                 controller.addPersonnel(p);
