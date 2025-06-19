@@ -6,10 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// DAO: Data Access Object for Delivery Personnel
 public class DeliveryPersonnelDAO {
 
-    // Add new delivery personnel
     public void addPersonnel(DeliveryPersonnel p) throws SQLException {
         String sql = "INSERT INTO delivery_personnel (delivery_personnel_id, email, name, phone_number, availability_status) VALUES (?, ?, ?, ?, ?)";
 
@@ -25,12 +23,14 @@ public class DeliveryPersonnelDAO {
 
             stmt.executeUpdate();
         }
+
     }
 
-    // Get all personnel
+
     public List<DeliveryPersonnel> getAllPersonnel() {
+
         List<DeliveryPersonnel> list = new ArrayList<>();
-        String sql = "SELECT * FROM delivery_personnel";
+        String sql = "SELECT * FROM delivery_personnel ORDER BY delivery_personnel_id ASC";
 
         try (
                 Connection conn = DBConnectionManageDeliveryPersonnel.getConnection();
@@ -51,9 +51,9 @@ public class DeliveryPersonnelDAO {
         }
 
         return list;
+
     }
 
-    // Update existing personnel by ID
     public void updatePersonnel(DeliveryPersonnel p) throws SQLException {
         String sql = "UPDATE delivery_personnel SET email = ?, name = ?, phone_number = ?, availability_status = ? WHERE delivery_personnel_id = ?";
 
@@ -71,7 +71,6 @@ public class DeliveryPersonnelDAO {
         }
     }
 
-    // Delete personnel by ID
     public void deletePersonnel(String delivery_personnel_id) {
         String sql = "DELETE FROM delivery_personnel WHERE delivery_personnel_id = ?";
 
@@ -86,7 +85,6 @@ public class DeliveryPersonnelDAO {
         }
     }
 
-    // Generate the next delivery_personnel_id (e.g., D001, D002, ...)
     public String generateNextID() {
         String prefix = "D";
         int max = 0;
@@ -103,7 +101,7 @@ public class DeliveryPersonnelDAO {
                         int num = Integer.parseInt(id.substring(prefix.length()));
                         max = Math.max(max, num);
                     } catch (NumberFormatException ignored) {
-                        // Skip any non-numeric IDs
+                        System.out.println("Error");
                     }
                 }
             }
@@ -114,7 +112,6 @@ public class DeliveryPersonnelDAO {
         return prefix + String.format("%03d", max + 1);
     }
 
-    // Check if email already exists (used before adding new personnel)
     public boolean emailExists(String email) throws SQLException {
         String query = "SELECT COUNT(*) FROM delivery_personnel WHERE email = ?";
         try (
@@ -127,7 +124,6 @@ public class DeliveryPersonnelDAO {
         }
     }
 
-    // Check if email already exists for a different ID (used before update)
     public boolean emailExistsForOtherId(String email, String id) throws SQLException {
         String query = "SELECT COUNT(*) FROM delivery_personnel WHERE email = ? AND delivery_personnel_id != ?";
         try (
@@ -143,8 +139,10 @@ public class DeliveryPersonnelDAO {
 
     public DeliveryPersonnel getPersonnelById(String id) {
         String query = "SELECT * FROM delivery_personnel WHERE delivery_personnel_id = ?";
-        try (Connection conn = DBConnectionManageDeliveryPersonnel.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+        try (
+                Connection conn = DBConnectionManageDeliveryPersonnel.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)
+        ) {
 
             stmt.setString(1, id);
             ResultSet rs = stmt.executeQuery();

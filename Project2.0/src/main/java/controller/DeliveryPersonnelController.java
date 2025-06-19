@@ -12,12 +12,11 @@ public class DeliveryPersonnelController {
     private DeliveryPersonnelDAO dao;
     private DeliveryPersonnelView view;
 
-    // Main constructor
     public DeliveryPersonnelController(DeliveryPersonnelDAO dao, DeliveryPersonnelView view) {
-        this.dao = dao != null ? dao : new DeliveryPersonnelDAO(); // Fallback in case null is passed
+        this.dao = dao != null ? dao : new DeliveryPersonnelDAO();
         this.view = view;
         if (this.view != null) {
-            this.view.setController(this); // Link view with controller
+            this.view.setController(this);
         }
         refreshPersonnelList();
     }
@@ -41,7 +40,7 @@ public class DeliveryPersonnelController {
             dao.addPersonnel(p);
             refreshPersonnelList();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(view, "Failed to add personnel: " + e.getMessage());
+            JOptionPane.showMessageDialog(view, "Failed to add delivery personnel: " + e.getMessage());
         }
     }
 
@@ -49,7 +48,7 @@ public class DeliveryPersonnelController {
         try {
             // Check if email already exists for another ID
             if (dao.emailExistsForOtherId(p.getEmail(), p.getDelivery_personnel_id())) {
-                JOptionPane.showMessageDialog(view, "Email already exists for another personnel!");
+                JOptionPane.showMessageDialog(view, "Email already exists for another delivery personnel!");
                 return;
             }
 

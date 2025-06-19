@@ -39,8 +39,8 @@ public class DeliveryPersonnelView extends JFrame {
         JButton resetButton = createStyledButton("Reset", "D:/GitHub/Images/reset.png", new Color(48, 48, 48));
         searchButton.setPreferredSize(new Dimension(120, 30));
         resetButton.setPreferredSize(new Dimension(120, 30));
-
         searchField.setPreferredSize(new Dimension(200, 30));
+
         searchPanel.add(new JLabel("Search by ID:"));
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
@@ -140,7 +140,7 @@ public class DeliveryPersonnelView extends JFrame {
 
         backButton.addActionListener(e -> {
             SwingUtilities.invokeLater(() -> {
-                String adminId = "Fake User"; // Example admin ID passed from login
+                String adminId = "Fake User";
                 Dashboard dashboard = new Dashboard(adminId);
                 dashboard.setVisible(true);
             });
@@ -246,6 +246,10 @@ public class DeliveryPersonnelView extends JFrame {
         if (result == JOptionPane.OK_OPTION) {
             String id = idField.getText();
             String email = emailField.getText().trim();
+            if(email.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Cannot add the user. Please enter a Email","Input Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             if (existingPersonnel == null) {
                 if (DAO.emailExists(email)) {
